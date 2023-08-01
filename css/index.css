@@ -1,0 +1,365 @@
+:root{
+  --main-color: orangered;
+}
+
+html, body{
+  box-sizing: border-box;
+  margin: 0; padding: 0;
+}
+/* 헤더 */
+header{
+  margin-top: 0;
+  width: 100vw; height: 60px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  top: 0;
+  position: fixed;
+  box-shadow: 0 0 .2rem rgba(0, 0, 0, 0.3);
+  z-index: 5;
+}
+header .profile{
+  margin-right: 6rem;
+  border-radius: 50%;
+  /* border: 1px solid #ddd; */
+  width: 50px; height: 50px;
+  overflow: hidden;
+}
+header .profile img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+header .darkbtn{
+  margin-right: 3rem;
+  outline: none;
+  border: none;
+  display: flex;
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+}
+header .darkbtn span{
+  position: absolute;
+  top: -30px; right: 0;
+  font-size: 4rem;
+  color: var(--main-color);
+}
+
+/* 메인 */
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  margin: 5rem auto;
+  text-align: center;
+  width: 50%;
+  height: auto;
+}
+.container h1, .container h2{
+  font-size: 3rem;
+  font-weight: bold;
+}
+.container .searching{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%; height: 50px;
+}
+.container .searching input{
+  border-radius: 30px;
+  border: 1px solid var(--main-color);
+  width:100%; height: 100%;
+  padding: 0;
+  padding-left: 1rem;
+  color: orange;
+  font-size: 1.2rem;
+}
+.container .searching input::placeholder{
+  color: orange;
+}
+.container .searching input:focus{
+  border: 1px solid orange;
+  outline: none;
+}
+.container .searching button{
+  border: 1px solid var(--main-color);
+  background-color: var(--main-color);
+  width: 45px; 
+  height: 100%;
+  position: absolute;
+  right: 0;
+  padding: 0;
+  border-radius: 0 30px 30px 0;
+  cursor: pointer;
+}
+.container .searching button span{
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.9rem;
+}
+
+/* result card */
+.result-container{
+  /* border: 1px solid rebeccapurple; */
+  width: 80%; height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: .8rem;
+  position: relative;
+}
+.result-container .result-card{
+  /* border: 1px solid rebeccapurple; */
+  width: 28%; height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.3);
+}
+.result-container .result-card .img-box{
+  width: 100%;  height: 50%;
+  border-radius: 20px 20px 0 0 ;
+}
+.result-container .result-card .img-box img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0 ;
+}
+.result-container .result-card .text-box{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;  height: 150px;
+  overflow: hidden;
+}
+.result-container .result-card .text-box h2{
+  margin: .5rem ;
+  font-size: .9rem;
+  text-align: center;
+}
+.result-container .result-card .text-box button{
+  margin: .5rem;
+  margin-bottom: 2rem;
+  background-color: var(--main-color);
+  border: none;
+  color: #fff;
+  padding: .7rem;
+  width: 55%;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* 모달창 */
+.modal{
+  width: 50%; height: 80%;
+  background-color: var(--main-color);
+  color: #fff;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  margin: 2rem;
+}
+.modal h2{
+  font-size: 2rem;
+}
+.modal button:not(.closebtn){
+  border: none;
+  background-color: #fff;
+  color: var(--main-color);
+  padding: .4rem;
+  border-radius: 10px;
+}
+.modal h3{
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+.modal .modal-imgbox{
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  margin: 1rem;
+  overflow: hidden;
+}
+.modal .modal-imgbox img{
+  width: 100%; height: 100%;
+}
+.modal p{
+  padding: 0 2rem;
+  margin: 0;
+  overflow-y: scroll;
+  height: 200px;
+}
+.modal .modal-link{
+  margin: 2rem;
+}
+.modal .modal-link a{
+  color: #fff;
+  text-decoration: underline;
+  font-weight: bold;
+  margin: 1rem;
+}
+.modal .closebtn{
+  position: absolute;
+  top: 10px; right: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: .2rem;
+  cursor: pointer;
+  border: none;
+}
+.modal .closebtn span{
+  color: var(--main-color);
+}
+
+/* 다크모드 */
+html.dark, body.dark, header.dark{
+  background-color: #333;
+  color: beige;
+}
+.container .searching input.dark{
+  background-color: #333;
+}
+.result-container .result-card.dark{
+  background-color: #333;
+  color: beige;
+}
+.modal.dark{
+  color: #333;
+}
+.modal button.dark{
+  background-color: #333;
+}
+.modal .modal-link a.dark{
+  color: #333;
+}
+
+/* 화면 가리기 */
+.close{
+  display: none;
+}
+.flex{
+  display: flex;
+}
+
+
+/* 반응형 */
+
+@media (max-width:540px){
+  header .profile{
+    margin-right: 4rem;
+  }
+  header .darkbtn{
+    margin-right: 1rem;
+  }
+  header .darkbtn span{
+    top: -22px;
+    font-size: 3rem;
+  }
+  .container{
+    width: 85%;
+    margin-bottom: 0;
+  }
+  .container h1{
+    font-size: 2rem;
+  }
+  .container p{
+    margin-top: 0;
+  }
+  .container h2{
+    font-size: 1.5rem;
+  }
+  .result-container{
+    width: 100%;
+    padding: 0;
+  }
+  .result-container .result-card{
+    width: 42%;
+  }
+  .modal{
+    width: 90%;
+    height: 80%;
+  }
+  .modal h2{
+    margin-top: 0%;
+  }
+  .modal .modal-imgbox{
+    position: relative;
+    top: 15px;
+  }
+  .modal .modal-link a{
+    font-size: 1.3rem;
+  }
+}
+@media (max-width:420px){
+  .result-container{
+    flex-flow: column;
+  }
+  .result-container .result-card{
+    width: 80%;
+  }
+}
+@media (max-width:280px){
+  header .profile{
+    width: 45px; height: 45px;
+    margin-right: 3rem;
+  }
+  .container h1{
+    font-size: 1.5rem;
+  }
+  .container p{
+    font-size: .9rem;
+  }
+  .container .searching{
+    height: 38px;
+  }
+  .container .searching input{
+    font-size: .9rem;
+  }
+  .container .searching button{
+    width: 27px;
+  }
+  .container .searching button span{
+    font-size: 1.3rem;
+  }
+  .container h2{
+    font-size: 1.3rem;
+  }
+  .modal{
+    width: 100%;
+  }
+  .modal h2{
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+  .modal h3{
+    font-size: 1.2rem;
+  }
+  .modal p{
+    font-size: .9rem;
+  }
+  .modal .modal-imgbox{
+    width: 80px; height: 80px;
+    margin-top: .5rem;
+  }
+  .modal .modal-link{
+    margin-top: 1rem;
+  }
+  .modal .modal-link a{
+    font-size: 1rem;
+  }
+}
