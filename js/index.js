@@ -51,44 +51,11 @@ function loadCardbox(arry){
     videoLink.href = arry.meals[i].strYoutube
     textBox.appendChild(videoLink)
     videoLink.classList.add('close')
-
-    // let cardBox = document.createElement('div')
-    // resultCon.appendChild(cardBox)
-    // cardBox.className = 'result-card'
-
-    // let imgBox = document.createElement('div')
-    // cardBox.appendChild(imgBox)
-    // imgBox.className = 'img-box'
-
-    // let textBox = document.createElement('div')
-    // cardBox.appendChild(textBox)
-    // textBox.className = 'text-box'
-
-    // let img = document.createElement('img')
-    // img.src = arry.hints[i].food.image
-    // imgBox.appendChild(img)
-
-    // let title = document.createElement('h2')
-    // title.innerText = arry.hints[i].food.label
-    // textBox.appendChild(title)
-
-    // let btn = document.createElement('button')
-    // btn.innerText = 'Get Recipe'
-    // textBox.appendChild(btn)
-    // btn.className = 'openbtn'
   }
 }
 
 //api데이터 가져오기
 const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=egg';
-// const url = 'https://edamam-food-and-grocery-database.p.rapidapi.com/api/food-database/v2/parser?nutrition-type=cooking&category%5B0%5D=generic-foods&health%5B0%5D=alcohol-free';
-// const options = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': '8c87c444d5msha70b17f0e3d0ccdp16e6c3jsn805938a8245d',
-// 		'X-RapidAPI-Host': 'edamam-food-and-grocery-database.p.rapidapi.com'
-// 	}
-// };
 
 function loadApi(url){
   return fetch(url)
@@ -108,7 +75,7 @@ function showData(list){
           document.body.offsetHeight, document.documentElement.offsetHeight,
           document.body.clientHeight, document.documentElement.clientHeight
         );
-        if(Math.abs((window.pageYOffset+ document.documentElement.clientHeight) - scrollHeight == 0)){
+        if(Math.abs((window.pageYOffset+ document.documentElement.clientHeight) - scrollHeight > 0)){
           console.log('밑바닥도착')
           offset = offset+numSix
           loadCardbox(list)
@@ -133,7 +100,7 @@ function showData(list){
           replace(searched)
       }else{
         console.log(cardTitles)
-        loadCardbox(list)
+        replace(cardTitles)
       }
       console.log(cardTitles)
       console.log(copyCardTitles)
@@ -163,12 +130,12 @@ function showData(list){
       }
   }
 
-
-  searchBtn.addEventListener('click',clickToSearch)
   
   
   
   //Get Recipe버튼 클릭시     
+  const cardBtns = document.querySelectorAll('.openbtn')
+
   function openModal(event){
     if(event.target.innerText === 'Get Recipe'){
       event.stopPropagation()
@@ -177,19 +144,17 @@ function showData(list){
       modalInner(event)
     }
   }
-
   //modal창 내부
+  
   let modalLink = document.querySelector('.modal .modal-link')
   let modalImg = document.querySelector('.modal .modal-imgbox')
   function modalInner(e){
-    console.log(e.target.nextElementSibling.nextElementSibling.nextElementSibling)
     modalTitle.innerText = e.target.previousElementSibling.innerText
     modalBtn.innerText = e.target.nextElementSibling.innerText
     modalText.innerText = e.target.nextElementSibling.nextElementSibling.innerText
     modalImg.innerHTML = e.target.parentNode.previousElementSibling.innerHTML
     modalLink.innerHTML = `<a href="${e.target.nextElementSibling.nextElementSibling.nextElementSibling}" target="_blank">Watch Video</a>`
   }
-  
   //modal창 닫기
   const closeBtn = document.querySelector('.closebtn')
   function closeModal(){
